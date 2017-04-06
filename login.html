@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Login</title>
+	<link rel="stylesheet" href="styles.css">
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous"></script>
+	<script src="login.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  // TODO: Replace with your project's customized code snippet
+	  var config = {
+	    apiKey: "<API_KEY>",
+	    authDomain: "<PROJECT_ID>.firebaseapp.com",
+	    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+	    storageBucket: "<BUCKET>.appspot.com",
+	    messagingSenderId: "<SENDER_ID>",
+	  };
+	  firebase.initializeApp(config);
+</script>
+</head>
+<body>
+
+<div class="login_root">
+
+<form id="login_form" method="post">
+
+	<figure>
+	    <img src="" alt="">
+	    <figcaption></figcaption>
+	</figure>
+
+	<input type="email" name="login_email" placeholder="example@umsl.edu" required>
+	<br>
+	<input type="password" name="login_password" placeholder="password" required>
+	<br>
+	<input type="submit" name="login_submit" value="Login">
+
+</form>
+	
+</div>
+	
+</body>
+</html>

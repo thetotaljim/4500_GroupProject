@@ -1,0 +1,18 @@
+-Function: Login-
+1.	Expect: Popup alert displaying "submit".
+	Input: None.
+	Result: Fail
+
+2. 	Expect: Popup alert displaying "submit".
+	Input: None.
+	Result: Pass
+
+3. 	Expect: Popup alert displaying "submit",
+			Form submission to not cause page reloading.
+	Input: None.
+	Result: Fail
+
+4. 	Expect: Popup alert displaying "submit",
+			Form submission to not cause page reloading.
+	Input: None.
+	Result: Pass
