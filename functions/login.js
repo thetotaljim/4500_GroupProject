@@ -69,13 +69,7 @@
 		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(){
 
 			console.log("user created");
-			firebase.auth().sendPasswordResetEmail(email).then(function() {
-			  // Email sent.
-			  console.log("password reset email sent");
-			}, function(error) {
-			  // An error happened.
-			  console.log("failed to send password reset email");
-			});
+			sendPasswordResetEmail(email);
 
 		}, function(error) {
 		  // Handle Errors here.
@@ -87,6 +81,16 @@
 
 
 
+	}
+
+	function sendPasswordResetEmail(email){
+		firebase.auth().sendPasswordResetEmail(email).then(function() {
+			  // Email sent.
+			  console.log("password reset email sent");
+			}, function(error) {
+			  // An error happened.
+			  console.log("failed to send password reset email");
+			});
 	}
 
 	function generateRandomPassword(){
