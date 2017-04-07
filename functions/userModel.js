@@ -1,6 +1,6 @@
-(function(){
-	function User(firstName, lastName, email, groups, isFaculty, isAdmin, phone, office){
-		this.id = "";
+
+	function User(id, firstName, lastName, email, groups, isFaculty, isAdmin, phone, office){
+		this.id = id || "";
 		this.firstName = firstName || "";
 		this.lastName = lastName || "";
 		this.email = email || "";
@@ -11,4 +11,3 @@
 		this.phone = phone || "";
 		this.office = office || "";
 	}
-}());

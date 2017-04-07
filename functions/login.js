@@ -1,32 +1,43 @@
 (function(){
 
-	var logoutButton;
+	//hide the logout button if the user isn't already signed in
+	var logoutButton = $('#logout_button');
+	logoutButton.hide();
 
+	var statusMessage = $('#status');
 	
 
 	$(document).ready(function(){
 
-
-		logoutButton = $('#logout_button');
-
-		logoutButton.hide();
-
-	
-
 		$('#login_form').on('submit', function(e){
+			//prevent page reload when login button is clicked
 			e.preventDefault();
+
+			//get email from email field; then clear the field
 			var email= $('#login_email').val();
+			$('#login_email').val('');
+
+			//get password from password field; then clear the field
 			var password = $('#login_password').val();
+			$('#login_password').val('');
+
+			//login with the given email and password; and disable the login button
 			login(email, password);
+			$('#login_submit').prop('disabled', true);
+			statusMessage.html("Signed In");
 		});
 
 
+		//logout when the logout button is clicked; and enable the login button
 		logoutButton.on('click', function(){
 			logout();
+			$('#login_submit').prop('disabled', false);
+			statusMessage.html("Signed Out");
 		});
 	});
 
 
+	//signs the user in; currently shows the logout button only if the user is signed in
 	function login(email, password){
 
 		firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
@@ -46,6 +57,8 @@
 		
 	}
 
+	//signs the user out
+
 	function logout(){
 
 		firebase.auth().signOut().then(function() {
@@ -63,6 +76,8 @@
 
 	}
 
+
+	//Creates a user with specified email and randomly generated password in firebase,  then sends password reset link to that user's email
 	function createUser(email){
 		var password = generateRandomPassword();
 
@@ -83,6 +98,9 @@
 
 	}
 
+
+	//Given an email, sends a password reset link to the user with that email, via Firebase
+
 	function sendPasswordResetEmail(email){
 		firebase.auth().sendPasswordResetEmail(email).then(function() {
 			  // Email sent.
@@ -93,11 +111,47 @@
 			});
 	}
 
+	//Generates a random password
 	function generateRandomPassword(){
 		var randomstring = Math.random().toString(36).slice(-8);
 		return randomstring;
 	}
 
+//------------------------
+	//These functions will be moved to appropriate files in the application later
+	function addAnnouncement(faculty, title, message, priority, groups){
 
+		var announcementsRef = firebase.database().ref('announcements/');
+		var newAnnouncementKey = announcementsRef.push().key;
+		var newAnnouncement = new Announcement(newAnnouncementKey, faculty, title, message, priority, groups);
+
+		var updates = {};
+		updates['/announcements/' + newAnnouncementKey] = newAnnouncement;
+		firebase.database().ref().update(updates);
+	}
+
+	function addGroup(name, users){
+
+		var groupsRef = firebase.database().ref('groups/');
+		var newGroupKey = groupsRef.push().key;
+		var newGroup = new Announcement(newGroupKey, name, users);
+
+		var updates = {};
+		updates['/groups/' + newGroupKey] = newGroup;
+		firebase.database().ref().update(updates);
+
+	}
+
+	function addUser(firstName, lastName, email, groups, isFaculty, isAdmin, phone, office){
+		var usersRef = firebase.database().ref('users/');
+		var newUserKey = usersRef.push().key;
+		var newUser = new User(newUserKey, firstName, lastName, email, groups, isFaculty, isAdmin, phone, office);
+
+		var updates = {};
+		updates['/users/' + newUserKey] = user;
+		firebase.database().ref().update(updates);
+	}
+
+//---------------------------
 
 }());

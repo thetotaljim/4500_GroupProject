@@ -1,11 +1,8 @@
-(function(){
 
-function Group(name, users){
+function Group(id, name, users){
 
 
-	this.id = "";
+	this.id = id || "";
 	this.name = name || "";
 	this.users = users || [];
 }
-
-}());
