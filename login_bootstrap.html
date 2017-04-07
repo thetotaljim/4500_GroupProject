@@ -29,6 +29,17 @@
 	  };
 	  firebase.initializeApp(config);
 </script>
+
+<style>
+  .btn-default {
+      box-shadow: 1px 2px 5px #000000;
+      color: #ffffff;
+      background-color: #981E32;
+      border-color: #EAAB00;
+  }
+
+  </style>
+
 </head>
 <body>
 
@@ -45,23 +56,27 @@
 	    <img src="" alt="">
 	    <figcaption></figcaption>
 	</figure>
+
 	<div class="input-group">
-     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 	<input type="email" class="form-control" id="login_email" name="login_email" 	placeholder="example@umsl.edu" required>
 
     </div>
+
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 	<input type="password" class="form-control"id="login_password" name="login_password" placeholder="password" required>
 	<br>
 	</div>
-    <input type="submit"  id="login_submit" name="login_submit" value="Login">
+    <br>
+    <button type="submit" class="btn btn-default" id="login_submit" name="login_submit" value="Login">Submit</button>
+
 	</form>
 
 
-
+<br>
 <div class="test">
-	<button id="logout_button">Logout!</button>
+	<button id="logout_button" class="btn btn-default">Logout!</button>
 </div>
 
 </div>
@@ -73,3 +88,4 @@
 
 </body>
 </html>
+
