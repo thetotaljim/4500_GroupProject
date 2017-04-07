@@ -1,18 +1,55 @@
+-Firebase Loading-
+1. 	Expect: Popup alert displaying "firebase loaded".
+	Input: None.
+	Result: Fail
+
+2. 	Expect: Popup alert displaying "firebase loaded".
+	Input: None.
+	Result: Pass
+
+	-------------------------
+
 -Function: Login-
-1.	Expect: Popup alert displaying "submit".
-	Input: None.
+
+1. 	Expect: Popup displaying "please fill out this field" when username is blank
+	Input: <empty string>
 	Result: Fail
 
-2. 	Expect: Popup alert displaying "submit".
-	Input: None.
+2. 	Expect: Popup displaying "please fill out this field" when username is blank
+	Input: <empty string>
 	Result: Pass
 
-3. 	Expect: Popup alert displaying "submit",
-			Form submission to not cause page reloading.
-	Input: None.
+3. 	Expect: Popup displaying "please fill out this field" when password is blank
+	Input: <empty string>
 	Result: Fail
 
-4. 	Expect: Popup alert displaying "submit",
-			Form submission to not cause page reloading.
-	Input: None.
+4. 	Expect: Popup displaying "please fill out this field" when password is blank
+	Input: <empty string>
 	Result: Pass
+
+5.	Expect: Popup alert displaying "submit".
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Fail
+
+6. 	Expect: Popup alert displaying "submit".
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Pass
+
+7. 	Expect: Form submission to not cause page reloading.
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Fail
+
+8. 	Expect: Form submission to not cause page reloading.
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Pass
+
+9. 	Expect: Form submission to not cause page reloading.
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Fail
+
+10. Expect: Form submission to not cause page reloading.
+	Input: <username>: jeff@test.com, <password>: test
+	Result: Fail
+
+
+

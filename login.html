@@ -5,12 +5,11 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Login</title>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="styles/styles.css">
 	<script
 	  src="https://code.jquery.com/jquery-3.2.1.min.js"
 	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	  crossorigin="anonymous"></script>
-	<script src="login.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase-auth.js"></script>
@@ -40,15 +39,21 @@
 	    <figcaption></figcaption>
 	</figure>
 
-	<input type="email" name="login_email" placeholder="example@umsl.edu" required>
+	<input type="email" id="login_email" name="login_email" placeholder="example@umsl.edu" required>
 	<br>
-	<input type="password" name="login_password" placeholder="password" required>
+	<input type="password" id="login_password" name="login_password" placeholder="password" required>
 	<br>
-	<input type="submit" name="login_submit" value="Login">
+	<input type="submit" id="login_submit" name="login_submit" value="Login">
 
 </form>
 	
 </div>
+
+<div class="test">
+	<button id="logout_button">Logout!</button>
+</div>
 	
+
+	<script src="functions/login.js"></script>
 </body>
 </html>
