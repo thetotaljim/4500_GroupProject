@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        // TODO: Replace with your project's customized code snippet
+        var config = {
+            apiKey: "AIzaSyAAiz-tSG6vKmKHlryHnkVXq0okNpS5Ga4",
+            authDomain: "musicapp4500.firebaseapp.com",
+            databaseURL: "https://musicapp4500.firebaseio.com",
+            projectId: "musicapp4500",
+            storageBucket: "musicapp4500.appspot.com",
+            messagingSenderId: "947399837764"
+        };
+        firebase.initializeApp(config);
+    </script>
+</head>
+
+<body>
+    <div class="announcementEntry_root">
+
+        <h1>Manage Announcements</h1>
+
+        <form id="announcementEntry_form" method="post">
+            <select id="annPriority">
+            <option value="1">Mandatory</option>
+            <option value="2">Recommended</option>
+        </select>
+            <br><br>
+            <label>Title</label>
+            <br>
+            <input type="text" id="announcement_title" name="announcement_title">
+            <br><br>
+            <label>Announcement</label>
+            <br>
+            <textarea style="resize:none" id="announcement_message" name="announcement_message" cols="40" rows="20"></textarea>
+            <br><br>
+            <h2>Select Distribution Group(s)</h2>
+            <br>
+            <div id="groupCheckbox" class="checkbox-group"></div>
+            <br><br>
+            <br><br>
+            <input type="submit" id="announcement_submit" name="announcement_submit" value="Submit">
+
+        </form>
+    </div>
+
+
+    <script src="./functions/userModel.js"></script>
+    <script src="./functions/groupModel.js"></script>
+    <script src="./functions/announcementModel.js"></script>
+    <script src="functions/login.js"></script>
+    <script src="functions/announcementCreation.js"></script>
+</body>
+
+</html>
