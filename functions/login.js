@@ -1,12 +1,22 @@
 (function(){
 
 	//hide the logout button if the user isn't already signed in
+
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+	    window.location.href = "announcements.html";
+	  } else {
+	    // No user is signed in.
+	  }
+	});
 	
 
 	var statusMessage = $('#status');
 	
 
 	$(document).ready(function(){
+
+
 
 		$('#login_form').on('submit', function(e){
 			//prevent page reload when login button is clicked
