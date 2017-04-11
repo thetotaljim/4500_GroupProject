@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Announcements</title>
+	<link rel="stylesheet" href="./styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="./styles/announcements.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="./libraries/jquery-dateFormat.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+
+  <script>
+	  // Initialize Firebase
+	  // TODO: Replace with your project's customized code snippet
+	  var config = {
+	    apiKey: "AIzaSyAAiz-tSG6vKmKHlryHnkVXq0okNpS5Ga4",
+	    authDomain: "musicapp4500.firebaseapp.com",
+	    databaseURL: "https://musicapp4500.firebaseio.com",
+	    projectId: "musicapp4500",
+	    storageBucket: "musicapp4500.appspot.com",
+	    messagingSenderId: "947399837764"
+	  };
+	  firebase.initializeApp(config);
+</script>
+
+
+</head>
+<body>
+
+<h2>Announcements</h2>
+
+<div class="test">
+	<button id="logout_button" class="btn btn-default">Logout!</button>
+</div>
+
+<div class="announcements_list">
+	
+</div>
+	
+
+	<script src="./functions/userModel.js"></script>
+	<script src="./functions/groupModel.js"></script>
+	<script src="./functions/announcementModel.js"></script>
+	<script src="functions/announcements.js"></script>
+</body>
+</html>

@@ -1,8 +1,7 @@
 (function(){
 
 	//hide the logout button if the user isn't already signed in
-	var logoutButton = $('#logout_button');
-	logoutButton.hide();
+	
 
 	var statusMessage = $('#status');
 	
@@ -24,16 +23,10 @@
 			//login with the given email and password; and disable the login button
 			login(email, password);
 			$('#login_submit').prop('disabled', true);
-			statusMessage.html("Signed In");
 		});
 
 
-		//logout when the logout button is clicked; and enable the login button
-		logoutButton.on('click', function(){
-			logout();
-			$('#login_submit').prop('disabled', false);
-			statusMessage.html("Signed Out");
-		});
+	
 	});
 
 
@@ -43,7 +36,7 @@
 		firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
 
 			console.log("user signed in");
-			logoutButton.show();
+			window.location.href = "announcements.html";
 			
 
 		}, function(error) {
@@ -68,12 +61,7 @@
 		}).catch(function(error) {
 		  // An error happened.
 		  console.log("signout failed");
-		});
-
-
-		
-
-
+		});	
 	}
 
 
