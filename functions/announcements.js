@@ -9,6 +9,10 @@
 			window.location.href = "login.html";
 		});
 
+		$("#add_announcement_button").on('click', function(){
+			window.location.href = "createAnnouncement.html";
+		});
+
 		// $('.announcement-list').append(generateAnnouncementFromTemplate(null));
 
 
