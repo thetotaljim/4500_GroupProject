@@ -12,12 +12,21 @@
 		// $('.announcement-list').append(generateAnnouncementFromTemplate(null));
 
 
-		var announcementsRef = firebase.database().ref('announcements/').orderByChild('postDate');;
-		announcementsRef.on('value', function(data) {
-  			data.forEach(function(announcement){
-  				$('.announcements_list').append(generateAnnouncementFromTemplate(announcement.toJSON()));
-  			})
+		var announcementsRef = firebase.database().ref('announcements/').orderByChild('postDate');
+
+		announcementsRef.on("child_added", function(data){
+			console.log(data.toJSON());
+			$('.announcements_list').prepend(generateAnnouncementFromTemplate(data.toJSON()));
 		});
+
+
+		// //Generates a new announcement after 7 second delay
+		// setTimeout(function(){
+		// 		var user = new User(null, "Jeffery", "Calhoun", "jcd39@mail.umsl.edu", null, true, true, null, null);
+		// 		addAnnouncement(user, "Testing realtime adding", "This is a test to see if announcements show up in real time", 2, null);
+		// 	}, 7000);
+
+
 
 
 	});
@@ -36,16 +45,12 @@
 
 		firebase.auth().signOut().then(function() {
 		  // Sign-out successful.
-		  console.log("signout success");
-		  logoutButton.hide();
 		}).catch(function(error) {
 		  // An error happened.
-		  console.log("signout failed");
 		});	
 	}
 
 	function generateAnnouncementFromTemplate(announcement){
-
 		var authorName = announcement.sender.firstName + " " + announcement.sender.lastName;
 
 		var priorityClass;
@@ -64,18 +69,34 @@
 				break;
 		}
 
-		var announcementHTML = '<div class="announcement ' + priorityClass + '">';
+		//TODO: The below code tries to display the announcement date as today if it is undefined in the announcement object
+			//THIS IS A SLOPPY FIX
+			//For some reason, when an announcement is added after the initial ones are loaded, firebase is notified of the change before the
+			//postDate property is set for that new announcement (it was undefined)
+
+		var announcementHTML = '<div class="announcement">';
       	announcementHTML += `<div class="announcement-block">
       						 <div class="announcement-heading">
-      						<h5 class="announcement-title text-center">` + announcement.title + `</h5>
+      						<h5 class="announcement-title text-center ` + priorityClass + `">` + announcement.title + `</h5>
       						<p class="announcement-author text-left">` + authorName + `</p>
-      						<p class="announcement-date text-right">` + $.format.date(announcement.postDate, "MMM d, yyyy")  + `</p>
+      						<p class="announcement-date text-right">` + $.format.date(announcement.postDate || new Date(), "MMM dd, yyyy")  + `</p>
       						</div>   
         					<hr>
        						<p class="announcement-message">` + announcement.message + `</p>
 						      </div>
 						    </div>`;
 		return announcementHTML;
+	}
+
+	function addAnnouncement(faculty, title, message, priority, groups){
+
+		var announcementsRef = firebase.database().ref('announcements/');
+		var newAnnouncementKey = announcementsRef.push().key;
+		var newAnnouncement = new Announcement(newAnnouncementKey, faculty, title, message, priority, groups);
+
+		var updates = {};
+		updates['/announcements/' + newAnnouncementKey] = newAnnouncement;
+		firebase.database().ref().update(updates);
 	}
 
 }());

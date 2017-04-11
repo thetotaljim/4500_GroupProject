@@ -1,9 +1,5 @@
 	function Announcement(id, faculty, title, message, priority, groups){
 
-		//check if the message isn't set or is empty, and return undefined object if so
-		if(!message || message === ""){
-			return undefined;
-		}
 
 		this.id = id || "";
 		this.postDate = new Date();

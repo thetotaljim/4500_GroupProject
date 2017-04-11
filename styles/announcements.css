@@ -38,15 +38,12 @@
 
 
 .priority-high{
-    background: red;
-    color: white;
+    color:  red;
 }
 
 .priority-medium{
-    background: yellow;
-    color: dimgray;
+    color: green;
 }
-
 .priority-low{
-    
+
 }
