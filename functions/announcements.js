@@ -1,7 +1,23 @@
 (function(){
+
+	var announcements = [];
 	var logoutButton = $('#logout_button');
 
+	var announcementModal;
+
 	$(document).ready(function(){
+
+		$("body").delegate('.announcement', 'click', function () {
+		    $('body').append(showModal($(this).index()));
+			$(announcementModal).modal('show');
+		});
+
+		// $('body').on('click', ".announcement", function(event) {
+		// 	event.preventDefault();
+		// 	 Act on the event 
+		// 	$('body').append(showModal($(this).index()));
+		// 	 $("#myModal").modal('show');
+		// });
 
 		//logout when the logout button is clicked; and enable the login button
 		logoutButton.on('click', function(){
@@ -13,36 +29,21 @@
 			window.location.href = "createAnnouncement.html";
 		});
 
+		
+
 		// $('.announcement-list').append(generateAnnouncementFromTemplate(null));
 
 
 		var announcementsRef = firebase.database().ref('announcements/').orderByChild('postDate');
 
 		announcementsRef.on("child_added", function(data){
-			console.log(data.toJSON());
+			announcements.unshift(data.toJSON());
 			$('.announcements_list').prepend(generateAnnouncementFromTemplate(data.toJSON()));
 		});
 
 
-		// //Generates a new announcement after 7 second delay
-		// setTimeout(function(){
-		// 		var user = new User(null, "Jeffery", "Calhoun", "jcd39@mail.umsl.edu", null, true, true, null, null);
-		// 		addAnnouncement(user, "Testing realtime adding", "This is a test to see if announcements show up in real time", 2, null);
-		// 	}, 7000);
-
-
-
-
 	});
 
-
-	function addAnnouncement(announcement){
-		  var key = firebase.database().ref('announcements/').push().key;
-		  announcement.id = key;
-		  firebase.database().ref('announcements/' + key).set({
-		    announcement: announcement
-		  });
-	}
 
 
 	function logout(){
@@ -78,8 +79,8 @@
 			//For some reason, when an announcement is added after the initial ones are loaded, firebase is notified of the change before the
 			//postDate property is set for that new announcement (it was undefined)
 
-		var announcementHTML = '<div class="announcement">';
-      	announcementHTML += `<div class="announcement-block">
+		var announcementHTML = `<div class="announcement">
+								<div class="announcement-block">
       						 <div class="announcement-heading">
       						<h5 class="announcement-title text-center ` + priorityClass + `">` + announcement.title + `</h5>
       						<p class="announcement-author text-left">` + authorName + `</p>
@@ -92,15 +93,40 @@
 		return announcementHTML;
 	}
 
-	function addAnnouncement(faculty, title, message, priority, groups){
+	function showModal(position){
+		var announcement = announcements[position];
 
-		var announcementsRef = firebase.database().ref('announcements/');
-		var newAnnouncementKey = announcementsRef.push().key;
-		var newAnnouncement = new Announcement(newAnnouncementKey, faculty, title, message, priority, groups);
+		var groupList = "";
 
-		var updates = {};
-		updates['/announcements/' + newAnnouncementKey] = newAnnouncement;
-		firebase.database().ref().update(updates);
+		//FIXME: The following code should create a list of groups from the announcemnt groups array
+			//currently, it simply tries to get one group from the announcemen
+
+		if(announcement.groups){
+
+			groupList += announcement.groups[0].name;
+		}
+		
+		announcementModal = `<div id="myModal" class="modal">
+						    <div class="modal-dialog">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						                <h4 class="modal-title">` + announcement.title +  `</h4>
+						            </div>
+						            <div class="modal-body">
+						                <p>` + announcement.message + `</p>
+						            </div>
+						            <div class="modal-footer">
+						                <p>Posted by: ` + announcement.sender.firstName + " " + announcement.sender.lastName +  `</p>
+						                <p>On: ` + $.format.date(announcement.postDate || new Date(), "MMM dd, yyyy") + `</p>
+						                <p>To: ` + (groupList || "All") + `</p>
+						            </div>
+						        </div>
+						    </div>
+						</div>`;
+
+		return announcementModal;
+
 	}
 
 }());
