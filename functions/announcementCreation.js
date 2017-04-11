@@ -6,6 +6,10 @@
      
         //populate check boxs based off existing distribution groups
         populateCheckBox();
+
+        $("#back_button").on("click", function(){
+            window.location.href = "announcements.html";
+        });
   
     });
 
@@ -68,6 +72,8 @@
         announcement.id = key;
         firebase.database().ref('announcements/' + key).set({
             announcement: announcement
+        }).then(function(){
+            window.location.href="announcements.html";
         });
     }
 
