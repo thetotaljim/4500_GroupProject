@@ -36,6 +36,14 @@
 	margin: 2px;
 }
 
+#logout_button, #add_announcement_button{
+    box-shadow: 1px 2px 5px #000000;
+      color: #ffffff;
+      background-color: #981E32;
+      border-color: #EAAB00;
+      margin: 0 auto;
+}
+
 
 .priority-high{
     color:  red;

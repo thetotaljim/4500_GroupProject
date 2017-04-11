@@ -1,0 +1,36 @@
+#announcementEntry_form{
+	width: 100%;
+}
+
+#back_button{
+	box-shadow: 1px 2px 5px #000000;
+      color: #ffffff;
+      background-color: #981E32;
+      border-color: #EAAB00;
+      margin: 0 auto;
+}
+
+#announcemet_priority{
+	border: 1px solid black;
+	margin-left: 15%;
+	width:  70%;
+}
+#announcement_title{
+	border: 1px solid black;
+	width: 100%;
+	margin: 0 auto;
+}
+
+#announcement_message{
+	border: 1px solid black;
+	width:  95%;
+	margin: 0 auto;
+}
+
+#announcement_submit{
+	box-shadow: 1px 2px 5px #000000;
+      color: #ffffff;
+      background-color: #981E32;
+      border-color: #EAAB00;
+      margin: 0 auto;
+}
