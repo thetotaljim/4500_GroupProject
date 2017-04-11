@@ -35,18 +35,19 @@
         <h1>Manage Announcements</h1>
 
         <form id="announcementEntry_form" method="post">
-            <select id="annPriority">
-            <option value="1">Mandatory</option>
-            <option value="2">Recommended</option>
+            <select id="announcemet_priority">
+            <option value="2">Mandatory</option>
+            <option value="1" selected>Normal</option>
+            <option value="0">Low</option>
         </select>
             <br><br>
             <label>Title</label>
             <br>
-            <input type="text" id="announcement_title" name="announcement_title">
+            <input type="text" id="announcement_title" name="announcement_title" required="">
             <br><br>
             <label>Announcement</label>
             <br>
-            <textarea style="resize:none" id="announcement_message" name="announcement_message" cols="40" rows="20"></textarea>
+            <textarea style="resize:none" id="announcement_message" name="announcement_message" cols="40" rows="20" required></textarea>
             <br><br>
             <h2>Select Distribution Group(s)</h2>
             <br>
@@ -62,7 +63,6 @@
     <script src="./functions/userModel.js"></script>
     <script src="./functions/groupModel.js"></script>
     <script src="./functions/announcementModel.js"></script>
-    <script src="functions/login.js"></script>
     <script src="functions/announcementCreation.js"></script>
 </body>
 

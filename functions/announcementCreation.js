@@ -10,6 +10,16 @@
         $("#back_button").on("click", function(){
             window.location.href = "announcements.html";
         });
+
+        $("#announcementEntry_form").on("submit", function(e){
+            e.preventDefault();
+            var priority = $("#announcemet_priority").val();
+            var title = $("#announcement_title").val();
+            var message = $("#announcement_message").val();
+            var user = new User(null, "Jeffery", "Calhoun", "jcd39@mail.umsl.edu", null, true, true, null, null);
+            addAnnouncement(user, title, message, priority, null);
+        
+        });
   
     });
 
@@ -67,15 +77,31 @@
 
     }
 
-    function addAnnouncement(announcement) {
-        var key = firebase.database().ref('announcements/').push().key;
-        announcement.id = key;
-        firebase.database().ref('announcements/' + key).set({
-            announcement: announcement
-        }).then(function(){
+    function addAnnouncement(faculty, title, message, priority, groups){
+
+        var announcementsRef = firebase.database().ref('announcements/');
+        var newAnnouncementKey = announcementsRef.push().key;
+        var newAnnouncement = new Announcement(newAnnouncementKey, faculty, title, message, priority, groups);
+
+        var updates = {};
+        updates['/announcements/' + newAnnouncementKey] = newAnnouncement;
+        firebase.database().ref().update(updates).then(function(){
             window.location.href="announcements.html";
+        }, function(error){
+            alert("Failed to add announcement!");
         });
     }
+
+    // function addAnnouncement(announcement) {
+    //     var key = firebase.database().ref('announcements/').push().key;
+    //     announcement.id = key;
+    //     console.log(announcement);
+    //     firebase.database().ref('announcements/' + key).set({
+    //         announcement: announcement
+    //     }).then(function(){
+    //         // window.location.href="announcements.html";
+    //     });
+    // }
 
 
 }());
